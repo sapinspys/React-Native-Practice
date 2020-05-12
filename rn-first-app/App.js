@@ -2,17 +2,36 @@ import React, { useState } from "react";
 import { Text, View, TextInput, Button, StyleSheet } from "react-native";
 
 export default function App() {
+  const [enteredGoal, setEnteredGoal] = useState("");
+
+  // Older
+  // function goalInputHandler(enteredText) {
+  //   setEnteredGoal(enteredText);
+  // };
+
+  // Modern
+  const goalInputHandler = (enteredText) => {
+    setEnteredGoal(enteredText);
+  };
+
+  const addGoalHandler = () => {
+    console.log(enteredGoal)
+  };
+
   return (
     // View is similar to <div>
     // Supported styles found in component docs
     // VIEWS USE FLEXBOX BY DEFAULT, justifyContent aligns on main axis, alignItems aligns child elements on cross axis
+    // onChangeText activates with every keystroke!
     <View style={styles.screen}>
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="Course Goal"
           style={styles.input}
+          onChangeText={goalInputHandler}
+          value={enteredGoal}
         />
-        <Button title="ADD" />
+        <Button title="ADD" onPress={addGoalHandler} />
       </View>
       <View></View>
     </View>
@@ -35,5 +54,5 @@ const styles = StyleSheet.create({
     borderColor: "black",
     borderWidth: 1,
     padding: 10,
-  }
+  },
 });
