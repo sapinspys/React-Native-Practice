@@ -41,9 +41,11 @@ export default function App() {
       </View>
       <View>
         {/* Converts array of data to array of components */}
-        {/* Remember each children should be assigned a key, needs to be unique */}
+        {/* Remember each children should be assigned a key, needs to be unique & ROOT */}
         {courseGoals.map((goal) => (
-          <Text key={goal}>{goal}</Text>
+          <View key={goal}>
+            <Text style={styles.listItem} >{goal}</Text>
+          </View>
         ))}
       </View>
     </View>
@@ -67,4 +69,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
   },
+  listItem: {
+    padding: 10,
+    marginVertical: 5,
+    backgroundColor: 'whitesmoke',
+    borderColor: 'black',
+    borderWidth: 1
+  }
 });
