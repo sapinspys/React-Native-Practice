@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Text, View, TextInput, Button, StyleSheet } from "react-native";
+import {
+  Text,
+  View,
+  TextInput,
+  Button,
+  StyleSheet,
+  ScrollView,
+} from "react-native";
 
 export default function App() {
   const [enteredGoal, setEnteredGoal] = useState("");
@@ -39,15 +46,18 @@ export default function App() {
         />
         <Button title="ADD" onPress={addGoalHandler} />
       </View>
-      <View>
-        {/* Converts array of data to array of components */}
-        {/* Remember each children should be assigned a key, needs to be unique & ROOT */}
-        {courseGoals.map((goal) => (
-          <View key={goal}>
-            <Text style={styles.listItem} >{goal}</Text>
-          </View>
-        ))}
-      </View>
+      {/* Scroll functionality must be EXPLICIT, not included by default */}
+      <ScrollView>
+        <View>
+          {/* Converts array of data to array of components */}
+          {/* Remember each children should be assigned a key, needs to be unique & ROOT */}
+          {courseGoals.map((goal) => (
+            <View key={goal}>
+              <Text style={styles.listItem}>{goal}</Text>
+            </View>
+          ))}
+        </View>
+      </ScrollView>
     </View>
   );
 }
@@ -72,8 +82,8 @@ const styles = StyleSheet.create({
   listItem: {
     padding: 10,
     marginVertical: 5,
-    backgroundColor: 'whitesmoke',
-    borderColor: 'black',
-    borderWidth: 1
-  }
+    backgroundColor: "whitesmoke",
+    borderColor: "black",
+    borderWidth: 1,
+  },
 });
