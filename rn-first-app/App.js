@@ -3,6 +3,7 @@ import { Text, View, TextInput, Button, StyleSheet } from "react-native";
 
 export default function App() {
   const [enteredGoal, setEnteredGoal] = useState("");
+  const [courseGoals, setCourseGoals] = useState([])
 
   // Older
   // function goalInputHandler(enteredText) {
@@ -15,7 +16,12 @@ export default function App() {
   };
 
   const addGoalHandler = () => {
-    console.log(enteredGoal)
+    // Does not guarantee latest state snapshot
+    // setCourseGoals([...courseGoals, enteredGoal]);
+
+    // Instead, this guarantees latest state
+    setCourseGoals(currentGoals => [...currentGoals, enteredGoal])
+    setEnteredGoal("");
   };
 
   return (
@@ -33,7 +39,9 @@ export default function App() {
         />
         <Button title="ADD" onPress={addGoalHandler} />
       </View>
-      <View></View>
+      <View>
+
+      </View>
     </View>
   );
 }
