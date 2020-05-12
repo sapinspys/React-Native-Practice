@@ -3,7 +3,7 @@ import { Text, View, TextInput, Button, StyleSheet } from "react-native";
 
 export default function App() {
   const [enteredGoal, setEnteredGoal] = useState("");
-  const [courseGoals, setCourseGoals] = useState([])
+  const [courseGoals, setCourseGoals] = useState([]);
 
   // Older
   // function goalInputHandler(enteredText) {
@@ -20,7 +20,7 @@ export default function App() {
     // setCourseGoals([...courseGoals, enteredGoal]);
 
     // Instead, this guarantees latest state
-    setCourseGoals(currentGoals => [...currentGoals, enteredGoal])
+    setCourseGoals((currentGoals) => [...currentGoals, enteredGoal]);
     setEnteredGoal("");
   };
 
@@ -40,7 +40,11 @@ export default function App() {
         <Button title="ADD" onPress={addGoalHandler} />
       </View>
       <View>
-
+        {/* Converts array of data to array of components */}
+        {/* Remember each children should be assigned a key, needs to be unique */}
+        {courseGoals.map((goal) => (
+          <Text key={goal}>{goal}</Text>
+        ))}
       </View>
     </View>
   );
