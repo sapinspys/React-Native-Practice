@@ -6,6 +6,7 @@ import {
   Button,
   StyleSheet,
   ScrollView,
+  FlatList,
 } from "react-native";
 
 export default function App() {
@@ -47,17 +48,16 @@ export default function App() {
         <Button title="ADD" onPress={addGoalHandler} />
       </View>
       {/* Scroll functionality must be EXPLICIT, not included by default */}
-      <ScrollView>
-        <View>
-          {/* Converts array of data to array of components */}
-          {/* Remember each children should be assigned a key, needs to be unique & ROOT */}
-          {courseGoals.map((goal) => (
-            <View key={goal}>
-              <Text style={styles.listItem}>{goal}</Text>
-            </View>
-          ))}
-        </View>
-      </ScrollView>
+      {/* ScrollView good for short lists, inefficient for long lists (renders all elements) */}
+      {/* For 20+, or "Infinite" lists, use FlatLists! */}
+      <FlatList
+        data={courseGoals}
+        renderItem={itemData => (
+          <View key={itemData.index} style={styles.listItem}>
+            <Text >{itemData.item}</Text>
+          </View>
+        )}
+      />
     </View>
   );
 }
