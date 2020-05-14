@@ -4,7 +4,10 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 const GoalItem = (props) => {
   return (
     //   There are many Touchables, for each OS, with many properties
-    <TouchableOpacity activeOpacity={0.8} onPress={props.onDelete}>
+    <TouchableOpacity
+      activeOpacity={0.8}
+      onPress={props.onDelete.bind(this, props.id)}
+    >
       <View style={styles.listItem}>
         <Text>{props.goal}</Text>
       </View>

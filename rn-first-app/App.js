@@ -22,9 +22,15 @@ export default function App() {
     // Instead, this guarantees latest state
     setCourseGoals((currentGoals) => [
       ...currentGoals,
-      { key: Math.random().toString(), goal: enteredGoal },
+      { id: Math.random().toString(), goal: enteredGoal },
     ]);
   };
+
+  const deleteGoalHandler = goalId => {
+    setCourseGoals(currentGoals => {
+      return currentGoals.filter((goal) => goal.id !== goalId)
+    })
+  }
 
   return (
     // View is similar to <div>
@@ -42,7 +48,8 @@ export default function App() {
         data={courseGoals}
         renderItem={(itemData) => (
           <GoalItem
-            onDelete={() => console.log("testing")}
+            id={itemData.item.id}
+            onDelete={deleteGoalHandler}
             goal={itemData.item.goal}
           />
         )}
