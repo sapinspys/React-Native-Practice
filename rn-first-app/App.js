@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import {
-  Button,
-  View,
-  StyleSheet,
-  FlatList,
-} from "react-native";
+import { Button, View, StyleSheet, FlatList } from "react-native";
 
 import GoalItem from "./components/GoalItem";
 import GoalInput from "./components/GoalInput";
@@ -27,11 +22,15 @@ export default function App() {
     // React batches setting state, this is good
   };
 
-  const deleteGoalHandler = goalId => {
-    setCourseGoals(currentGoals => {
-      return currentGoals.filter((goal) => goal.id !== goalId)
-    })
-  }
+  const deleteGoalHandler = (goalId) => {
+    setCourseGoals((currentGoals) => {
+      return currentGoals.filter((goal) => goal.id !== goalId);
+    });
+  };
+
+  const cancelAddGoalHandler = () => {
+    setIsAddMode(false);
+  };
 
   return (
     // View is similar to <div>
@@ -40,7 +39,11 @@ export default function App() {
     // onChangeText activates with every keystroke!
     <View style={styles.screen}>
       <Button title="Add new goal" onPress={() => setIsAddMode(true)} />
-      <GoalInput visible={isAddMode} onAddGoal={addGoalHandler} />
+      <GoalInput
+        visible={isAddMode}
+        onAddGoal={addGoalHandler}
+        onCancel={cancelAddGoalHandler}
+      />
       {/* Scroll functionality must be EXPLICIT, not included by default */}
       {/* ScrollView good for short lists, inefficient for long lists (renders all elements) */}
       {/* For 20+, or "Infinite" lists, use FlatLists! */}
@@ -65,5 +68,5 @@ export default function App() {
 const styles = StyleSheet.create({
   screen: {
     padding: 50,
-  }
+  },
 });

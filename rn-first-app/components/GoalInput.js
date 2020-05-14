@@ -27,11 +27,11 @@ const GoalInput = (props) => {
           style={styles.input}
           onChangeText={goalInputHandler}
           value={enteredGoal}
-          // onFocus={setEnteredGoal.bind(this, "")}
         />
         {/* Option 1: */}
         {/* <Button title="ADD" onPress={() => props.addGoalHandler(enteredGoal)} /> */}
         {/* Option 2: */}
+        <Button title="CANCEL" color="red" onPress={props.onCancel} />
         <Button title="ADD" onPress={addGoalHandler} />
       </View>
     </Modal>
