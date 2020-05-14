@@ -22,6 +22,9 @@ export default function App() {
       ...currentGoals,
       { id: Math.random().toString(), goal: enteredGoal },
     ]);
+
+    setIsAddMode(false);
+    // React batches setting state, this is good
   };
 
   const deleteGoalHandler = goalId => {
