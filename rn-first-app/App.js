@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import {
-  Text,
-  View,
-  TextInput,
   Button,
+  View,
   StyleSheet,
-  ScrollView,
   FlatList,
 } from "react-native";
 
@@ -14,6 +11,7 @@ import GoalInput from "./components/GoalInput";
 
 export default function App() {
   const [courseGoals, setCourseGoals] = useState([]);
+  const [isAddMode, setIsAddMode] = useState(false);
 
   const addGoalHandler = (enteredGoal) => {
     // Does not guarantee latest state snapshot
@@ -38,7 +36,8 @@ export default function App() {
     // VIEWS USE FLEXBOX BY DEFAULT, justifyContent aligns on main axis, alignItems aligns child elements on cross axis
     // onChangeText activates with every keystroke!
     <View style={styles.screen}>
-      <GoalInput addGoalHandler={addGoalHandler} />
+      <Button title="Add new goal" onPress={() => setIsAddMode(true)} />
+      <GoalInput visible={isAddMode} addGoalHandler={addGoalHandler} />
       {/* Scroll functionality must be EXPLICIT, not included by default */}
       {/* ScrollView good for short lists, inefficient for long lists (renders all elements) */}
       {/* For 20+, or "Infinite" lists, use FlatLists! */}

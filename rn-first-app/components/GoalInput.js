@@ -15,7 +15,7 @@ const GoalInput = (props) => {
   };
 
   return (
-    <Modal visible={false}>
+    <Modal visible={props.visible}>
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="Course Goal"
