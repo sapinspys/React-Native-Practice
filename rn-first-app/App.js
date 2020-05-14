@@ -13,20 +13,9 @@ import GoalItem from "./components/GoalItem";
 import GoalInput from "./components/GoalInput";
 
 export default function App() {
-  const [enteredGoal, setEnteredGoal] = useState("");
   const [courseGoals, setCourseGoals] = useState([]);
 
-  // Older
-  // function goalInputHandler(enteredText) {
-  //   setEnteredGoal(enteredText);
-  // };
-
-  // Modern
-  const goalInputHandler = (enteredText) => {
-    setEnteredGoal(enteredText);
-  };
-
-  const addGoalHandler = () => {
+  const addGoalHandler = (enteredGoal) => {
     // Does not guarantee latest state snapshot
     // setCourseGoals([...courseGoals, enteredGoal]);
 
@@ -35,7 +24,6 @@ export default function App() {
       ...currentGoals,
       { key: Math.random().toString(), goal: enteredGoal },
     ]);
-    setEnteredGoal("");
   };
 
   return (
@@ -44,11 +32,7 @@ export default function App() {
     // VIEWS USE FLEXBOX BY DEFAULT, justifyContent aligns on main axis, alignItems aligns child elements on cross axis
     // onChangeText activates with every keystroke!
     <View style={styles.screen}>
-      <GoalInput
-        enteredGoal={enteredGoal}
-        goalInputHandler={goalInputHandler}
-        addGoalHandler={addGoalHandler}
-      />
+      <GoalInput addGoalHandler={addGoalHandler} />
       {/* Scroll functionality must be EXPLICIT, not included by default */}
       {/* ScrollView good for short lists, inefficient for long lists (renders all elements) */}
       {/* For 20+, or "Infinite" lists, use FlatLists! */}
