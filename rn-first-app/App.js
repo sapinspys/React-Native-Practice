@@ -40,7 +40,12 @@ export default function App() {
       {/* If no KEY or ID, ie. UID, use keyExtractor={(item, index) => item.UID}  */}
       <FlatList
         data={courseGoals}
-        renderItem={(itemData) => <GoalItem goal={itemData.item.goal} />}
+        renderItem={(itemData) => (
+          <GoalItem
+            onDelete={() => console.log("testing")}
+            goal={itemData.item.goal}
+          />
+        )}
       />
     </View>
   );
