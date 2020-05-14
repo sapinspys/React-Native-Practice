@@ -9,7 +9,8 @@ import {
   FlatList,
 } from "react-native";
 
-import GoalItem from './components/GoalItem'
+import GoalItem from "./components/GoalItem";
+import GoalInput from "./components/GoalInput";
 
 export default function App() {
   const [enteredGoal, setEnteredGoal] = useState("");
@@ -43,7 +44,11 @@ export default function App() {
     // VIEWS USE FLEXBOX BY DEFAULT, justifyContent aligns on main axis, alignItems aligns child elements on cross axis
     // onChangeText activates with every keystroke!
     <View style={styles.screen}>
-
+      <GoalInput
+        enteredGoal={enteredGoal}
+        goalInputHandler={goalInputHandler}
+        addGoalHandler={addGoalHandler}
+      />
       {/* Scroll functionality must be EXPLICIT, not included by default */}
       {/* ScrollView good for short lists, inefficient for long lists (renders all elements) */}
       {/* For 20+, or "Infinite" lists, use FlatLists! */}
