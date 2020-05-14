@@ -9,6 +9,8 @@ import {
   FlatList,
 } from "react-native";
 
+import GoalItem from './components/GoalItem'
+
 export default function App() {
   const [enteredGoal, setEnteredGoal] = useState("");
   const [courseGoals, setCourseGoals] = useState([]);
@@ -28,7 +30,10 @@ export default function App() {
     // setCourseGoals([...courseGoals, enteredGoal]);
 
     // Instead, this guarantees latest state
-    setCourseGoals((currentGoals) => [...currentGoals, { key: Math.random().toString(), goal: enteredGoal }]);
+    setCourseGoals((currentGoals) => [
+      ...currentGoals,
+      { key: Math.random().toString(), goal: enteredGoal },
+    ]);
     setEnteredGoal("");
   };
 
@@ -54,11 +59,7 @@ export default function App() {
       {/* If no KEY or ID, ie. UID, use keyExtractor={(item, index) => item.UID}  */}
       <FlatList
         data={courseGoals}
-        renderItem={itemData => (
-          <View style={styles.listItem}>
-            <Text >{itemData.item.goal}</Text>
-          </View>
-        )}
+        renderItem={(itemData) => <GoalItem goal={itemData.item.goal} />}
       />
     </View>
   );
