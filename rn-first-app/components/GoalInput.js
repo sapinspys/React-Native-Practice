@@ -31,8 +31,15 @@ const GoalInput = (props) => {
         {/* Option 1: */}
         {/* <Button title="ADD" onPress={() => props.addGoalHandler(enteredGoal)} /> */}
         {/* Option 2: */}
-        <Button title="CANCEL" color="red" onPress={props.onCancel} />
-        <Button title="ADD" onPress={addGoalHandler} />
+        {/* Note: Buttons cannot take style prop, surround in a View */}
+        <View style={styles.buttonContainer}>
+          <View style={styles.button}>
+            <Button title="CANCEL" color="red" onPress={props.onCancel} />
+          </View>
+          <View style={styles.button}>
+            <Button title="ADD" onPress={addGoalHandler} />
+          </View>
+        </View>
       </View>
     </Modal>
   );
@@ -50,6 +57,14 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     marginBottom: 10,
+  },
+  buttonContainer: {
+    width: "70%",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+  },
+  button: {
+    width: "40%",
   },
 });
 
