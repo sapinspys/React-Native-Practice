@@ -43,15 +43,7 @@ export default function App() {
     // VIEWS USE FLEXBOX BY DEFAULT, justifyContent aligns on main axis, alignItems aligns child elements on cross axis
     // onChangeText activates with every keystroke!
     <View style={styles.screen}>
-      <View style={styles.inputContainer}>
-        <TextInput
-          placeholder="Course Goal"
-          style={styles.input}
-          onChangeText={goalInputHandler}
-          value={enteredGoal}
-        />
-        <Button title="ADD" onPress={addGoalHandler} />
-      </View>
+
       {/* Scroll functionality must be EXPLICIT, not included by default */}
       {/* ScrollView good for short lists, inefficient for long lists (renders all elements) */}
       {/* For 20+, or "Infinite" lists, use FlatLists! */}
