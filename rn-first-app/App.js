@@ -28,7 +28,7 @@ export default function App() {
     // setCourseGoals([...courseGoals, enteredGoal]);
 
     // Instead, this guarantees latest state
-    setCourseGoals((currentGoals) => [...currentGoals, enteredGoal]);
+    setCourseGoals((currentGoals) => [...currentGoals, { key: Math.random().toString(), goal: enteredGoal }]);
     setEnteredGoal("");
   };
 
@@ -50,11 +50,13 @@ export default function App() {
       {/* Scroll functionality must be EXPLICIT, not included by default */}
       {/* ScrollView good for short lists, inefficient for long lists (renders all elements) */}
       {/* For 20+, or "Infinite" lists, use FlatLists! */}
+      {/* FlatLists assign keys by default ONLY if data is a list of objects with KEY or ID PROP  */}
+      {/* If no KEY or ID, ie. UID, use keyExtractor={(item, index) => item.UID}  */}
       <FlatList
         data={courseGoals}
         renderItem={itemData => (
-          <View key={itemData.index} style={styles.listItem}>
-            <Text >{itemData.item}</Text>
+          <View style={styles.listItem}>
+            <Text >{itemData.item.goal}</Text>
           </View>
         )}
       />
