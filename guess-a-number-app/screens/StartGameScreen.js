@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, TextInput, Button } from "react-native";
 
-import Card from '../components/Card';
+import Card from "../components/Card";
 
 const StartGameScreen = (props) => {
   return (
@@ -11,8 +11,12 @@ const StartGameScreen = (props) => {
         <Text>Select a Number:</Text>
         <TextInput />
         <View style={styles.buttonContainer}>
-          <Button title="Reset" onPress={() => {}} />
-          <Button title="Confirm" onPress={() => {}} />
+          <View style={styles.button}>
+            <Button title="Reset" onPress={() => {}} />
+          </View>
+          <View style={styles.button}>
+            <Button title="Confirm" onPress={() => {}} />
+          </View>
         </View>
       </Card>
     </View>
@@ -40,6 +44,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
     paddingHorizontal: 15,
   },
+  button: {
+    width: 100,
+  }
 });
 
 export default StartGameScreen;
