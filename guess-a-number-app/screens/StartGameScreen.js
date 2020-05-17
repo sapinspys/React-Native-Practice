@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     // ELEVATION IS ONLY FOR ANDROID (DEFAULT MATERIAL DESIGN)
     elevation: 5,
     padding: 20,
-    borderRadius: 10,
+    borderRadius: 5,
   },
   buttonContainer: {
     flexDirection: "row",
