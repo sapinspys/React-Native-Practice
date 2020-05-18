@@ -24,6 +24,10 @@ const GameScreen = (props) => {
     generateRandomBetween(1, 100, props.userChoice)
   );
 
+  // useRef avoids re-rendering state, value stored in "current" property
+  const currentLow = useRef(1);
+  const currentHigh = useRef(100);
+
   const nextGuessHandler = (direction) => {
     if (
       (direction === "LOWER" && currentGuess < props.userChoice) ||
@@ -36,8 +40,18 @@ const GameScreen = (props) => {
     }
 
     if (direction === "LOWER") {
-        generateRandomBetween()
+      currentHigh.current = currentGuess;
+    } else {
+      currentLow.current = currentGuess;
     }
+
+    const nextNumber = generateRandomBetween(
+      currentLow.current,
+      currentHigh.current,
+      currentGuess
+    );
+
+    setCurrentGuess(nextNumber)
   };
 
   return (
