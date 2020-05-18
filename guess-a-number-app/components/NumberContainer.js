@@ -12,19 +12,19 @@ const NumberContainer = (props) => {
 };
 
 const styles = StyleSheet.create({
-    container: {
-        borderWidth: 2,
-        borderColor: Colors.secondary,
-        padding: 10,
-        borderRadius: 5,
-        marginVertical: 10,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    number: {
-        color: Colors.secondary,
-        fontSize: 22
-    }
+  container: {
+    borderWidth: 2,
+    borderColor: Colors.secondary,
+    padding: 10,
+    borderRadius: 5,
+    marginVertical: 10,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  number: {
+    color: Colors.secondary,
+    fontSize: 22,
+  },
 });
 
 export default NumberContainer;
