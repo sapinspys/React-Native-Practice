@@ -22,7 +22,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     number: {
-
+        color: Colors.secondary,
+        fontSize: 22
     }
 });
 

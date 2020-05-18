@@ -132,6 +132,7 @@ const styles = StyleSheet.create({
   },
   summaryContainer: {
     marginTop: 10,
+    alignItems: 'center',
   }
 });
 
