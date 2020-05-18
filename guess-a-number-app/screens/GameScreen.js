@@ -64,7 +64,7 @@ const GameScreen = (props) => {
     );
 
     setCurrentGuess(nextNumber);
-    setRounds(currRounds => currRounds+1)
+    setRounds((currRounds) => currRounds + 1);
   };
 
   return (
