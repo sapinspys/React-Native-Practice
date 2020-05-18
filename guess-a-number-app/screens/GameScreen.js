@@ -23,7 +23,7 @@ const GameScreen = (props) => {
   const [currentGuess, setCurrentGuess] = useState(
     generateRandomBetween(1, 100, props.userChoice)
   );
-  const [rounds, setRounds] = 0;
+  const [rounds, setRounds] = useState(0);
 
   // useRef avoids re-rendering state, value stored in "current" property
   const currentLow = useRef(1);
