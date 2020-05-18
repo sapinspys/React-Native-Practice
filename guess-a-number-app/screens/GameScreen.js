@@ -29,12 +29,16 @@ const GameScreen = (props) => {
   const currentLow = useRef(1);
   const currentHigh = useRef(100);
 
+  const { userChoice, onGameOver } = props;
+
   // useEffect allows you to run logic after every render cycle!
+  // Dependencies of effect: second argument is array of dependencies
+  // Will only re-run useEffect if dependencies are modified
   useEffect(() => {
-    if (currentGuess === props.userChoice) {
-      props.onGameOver(rounds);
+    if (currentGuess === userChoice) {
+      onGameOver(rounds);
     }
-  });
+  }, [currentGuess, userChoice, onGameOver]);
 
   const nextGuessHandler = (direction) => {
     if (
