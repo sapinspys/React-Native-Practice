@@ -23,6 +23,7 @@ const GameScreen = (props) => {
   const [currentGuess, setCurrentGuess] = useState(
     generateRandomBetween(1, 100, props.userChoice)
   );
+  const [rounds, setRounds] = 0;
 
   // useRef avoids re-rendering state, value stored in "current" property
   const currentLow = useRef(1);
@@ -30,10 +31,10 @@ const GameScreen = (props) => {
 
   // useEffect allows you to run logic after every render cycle!
   useEffect(() => {
-      if (currentGuess === props.userChoice) {
-          
-      }
-  })
+    if (currentGuess === props.userChoice) {
+      props.onGameOver(rounds);
+    }
+  });
 
   const nextGuessHandler = (direction) => {
     if (
@@ -58,7 +59,8 @@ const GameScreen = (props) => {
       currentGuess
     );
 
-    setCurrentGuess(nextNumber)
+    setCurrentGuess(nextNumber);
+    setRounds(currRounds => currRounds+1)
   };
 
   return (
