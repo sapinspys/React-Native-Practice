@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { View, Text, StyleSheet, Button, Alert } from "react-native";
 
 import NumberContainer from "../components/NumberContainer";
@@ -27,6 +27,13 @@ const GameScreen = (props) => {
   // useRef avoids re-rendering state, value stored in "current" property
   const currentLow = useRef(1);
   const currentHigh = useRef(100);
+
+  // useEffect allows you to run logic after every render cycle!
+  useEffect(() => {
+      if (currentGuess === props.userChoice) {
+          
+      }
+  })
 
   const nextGuessHandler = (direction) => {
     if (
