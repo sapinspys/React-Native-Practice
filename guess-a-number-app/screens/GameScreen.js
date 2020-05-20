@@ -72,10 +72,15 @@ const GameScreen = (props) => {
       <Text>Opponent's Guess:</Text>
       <NumberContainer userChoice={currentGuess} />
       <Card style={styles.buttonContainer}>
-        <Button title="LOWER" onPress={nextGuessHandler.bind(this, "LOWER")} />
+        <Button
+          title="LOWER"
+          onPress={nextGuessHandler.bind(this, "LOWER")}
+          color={Colors.secondary}
+        />
         <Button
           title="HIGHER"
           onPress={nextGuessHandler.bind(this, "HIGHER")}
+          color={Colors.primary}
         />
       </Card>
     </View>
