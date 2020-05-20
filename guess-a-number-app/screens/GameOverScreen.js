@@ -4,7 +4,9 @@ import { View, Text, StyleSheet } from "react-native";
 const GameOverScreen = (props) => {
   return (
     <View style={styles.screen}>
-      <Text>GAME OVER! Number was guessed in {props.rounds} rounds!</Text>
+      <Text>GAME OVER</Text>
+      <Text>Number was guessed in {props.rounds} rounds!</Text>
+      <Text>Your number: {props.userChoice}</Text>
     </View>
   );
 };
