@@ -1,13 +1,15 @@
 import React from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 
+import Colors from "../constants/colors"
+
 const GameOverScreen = (props) => {
   return (
     <View style={styles.screen}>
       <Text>GAME OVER</Text>
       <Text>Number was guessed in {props.rounds} rounds!</Text>
       <Text>Your number: {props.userChoice}</Text>
-      <Button title="New Game" onPress={props.onRestartGame} />
+      <Button title="NEW GAME" onPress={props.onRestartGame} color={Colors.secondary} />
     </View>
   );
 };

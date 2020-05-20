@@ -20,7 +20,7 @@ export default function App() {
   };
 
   const restartGameHandler = () => {
-    setUserNumber(false);
+    setUserNumber(null);
     setGuessRounds(0);
   };
 
