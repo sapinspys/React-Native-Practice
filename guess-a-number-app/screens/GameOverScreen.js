@@ -10,6 +10,7 @@ const GameOverScreen = (props) => {
   return (
     <View style={styles.screen}>
       <TitleText>GAME OVER</TitleText>
+      <Image source={require('../assets/success.png')} />
       <BodyText>Number was guessed in {props.rounds} rounds!</BodyText>
       <BodyText>Your number: {props.userChoice}</BodyText>
       <Button title="NEW GAME" onPress={props.onRestartGame} color={Colors.secondary} />
