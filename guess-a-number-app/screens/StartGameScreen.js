@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   title: {
-    marginVertical: 10,
+    marginVertical: 15,
   },
   inputContainer: {
     width: 300,
