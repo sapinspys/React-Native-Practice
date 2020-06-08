@@ -13,7 +13,8 @@ const GameOverScreen = (props) => {
       <View style={styles.imageContainer} >
         <Image
           style={styles.image}
-          source={require("../assets/success.png")}
+          // source={require("../assets/success.png")}
+          source={{uri: "https://katu.com/resources/media/efd0ef98-3733-455d-8a2e-756d41cfea02-large16x9_MountHood.jpg?1590594687505"}}
           // resizeMode={"contain"} // "COVER" BY DEFAULT
         />
       </View>
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     marginVertical: 30
   },
-  image: {
+  image: { // OVERRIDING AUTOMATIC RESIZING ONLY NEEDED FOR WEB IMAGES
     width: "100%",
     height: "100%"
   },
