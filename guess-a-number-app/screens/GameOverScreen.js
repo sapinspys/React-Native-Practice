@@ -21,11 +21,9 @@ const GameOverScreen = (props) => {
       {/* Text>Text components WILL inherit styling */}
       <View style={styles.resultContainer}>
         <BodyText style={styles.resultText}>
-          The number was guessed in{" "}
-          <Text style={styles.highlight}>{props.rounds}</Text> round(s)!
-        </BodyText>
-        <BodyText style={styles.resultText}>
-          Your number: <Text style={styles.highlight}>{props.userChoice}</Text>
+          The number <Text style={styles.highlight}>{props.userChoice}</Text>{" "}
+          was guessed in <Text style={styles.highlight}>{props.rounds}</Text>{" "}
+          round(s)!
         </BodyText>
       </View>
       <Button
@@ -58,6 +56,7 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   resultContainer: {
+    width: "80%",
     marginVertical: 15,
   },
   resultText: {
