@@ -18,14 +18,16 @@ const GameOverScreen = (props) => {
           // resizeMode={"contain"} // "COVER" BY DEFAULT
         />
       </View>
-      {/* Text components WILL inherit styling */}
-      <BodyText> 
-        The number was guessed in{" "}
-        <Text style={styles.highlight}>{props.rounds}</Text> round(s)!
-      </BodyText>
-      <BodyText>
-        Your number: <Text style={styles.highlight}>{props.userChoice}</Text>
-      </BodyText>
+      {/* Text>Text components WILL inherit styling */}
+      <View style={styles.resultContainer}>
+        <BodyText style={styles.resultText}>
+          The number was guessed in{" "}
+          <Text style={styles.highlight}>{props.rounds}</Text> round(s)!
+        </BodyText>
+        <BodyText style={styles.resultText}>
+          Your number: <Text style={styles.highlight}>{props.userChoice}</Text>
+        </BodyText>
+      </View>
       <Button
         title="NEW GAME"
         onPress={props.onRestartGame}
@@ -55,9 +57,16 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
+  resultContainer: {
+    marginVertical: 15,
+  },
+  resultText: {
+    textAlign: "center",
+    fontSize: 20,
+  },
   highlight: {
     color: Colors.tertiary,
-    fontFamily: "open-sans-bold"
+    fontFamily: "open-sans-bold",
   },
 });
 
