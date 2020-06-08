@@ -10,11 +10,11 @@ const GameOverScreen = (props) => {
   return (
     <View style={styles.screen}>
       <TitleText>GAME OVER</TitleText>
-      <View>
+      <View style={styles.imageContainer} >
         <Image
           style={styles.image}
           source={require("../assets/success.png")}
-          resizeMode={"contain"} // "COVER" BY DEFAULT
+          // resizeMode={"contain"} // "COVER" BY DEFAULT
         />
       </View>
       <BodyText>Number was guessed in {props.rounds} rounds!</BodyText>
@@ -35,13 +35,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   imageContainer: {
-    borderRadius: 200,
-    borderWidth: 3,
+    width: 300, // WILL NEED RESPONSIVENESS LATER 
+    height: 300,
+    borderRadius: 300,
+    borderWidth: 2,
     borderColor: "black",
+    overflow: "hidden",
+    marginVertical: 30
   },
   image: {
-    width: "80%",
-    height: 300,
+    width: "100%",
+    height: "100%"
   },
 });
 
