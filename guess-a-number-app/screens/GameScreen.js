@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
-import { View, StyleSheet, Alert, ScrollView, Text } from "react-native";
+import { View, StyleSheet, Alert, ScrollView } from "react-native";
 import { Ionicons } from "@expo/vector-icons"; // https://icons.expo.fyi/
 
 import NumberContainer from "../components/NumberContainer";
 import Card from "../components/Card";
 import MainButton from "../components/MainButton";
 import TitleText from "../components/TitleText";
+import BodyText from "../components/BodyText";
 
 // BUILT OUTSIDE COMPONENT TO AVOID RE-RENDERING, FOR PERFORMANCE (NO PROPS OR STATE USED...)
 const generateRandomBetween = (min, max, exclude) => {
@@ -19,6 +20,13 @@ const generateRandomBetween = (min, max, exclude) => {
     return rndNum;
   }
 };
+
+const renderListItem = (value, round) => (
+  <View style={styles.listItem} key={value}>
+    <BodyText>#{round}</BodyText>
+    <BodyText>{value}</BodyText>
+  </View>
+);
 
 const GameScreen = (props) => {
   const initialGuess = generateRandomBetween(1, 100, props.userChoice);
@@ -79,13 +87,13 @@ const GameScreen = (props) => {
           <Ionicons name="md-add" size={24} color="white" />
         </MainButton>
       </Card>
-      <ScrollView>
-        {pastGuesses.map((guess) => (
-          <View key={guess}>
-            <Text>{guess}</Text>
-          </View>
-        ))}
-      </ScrollView>
+      <View style={styles.list}>
+        <ScrollView>
+          {pastGuesses.map((guess, index) =>
+            renderListItem(guess, pastGuesses.length - index)
+          )}
+        </ScrollView>
+      </View>
     </View>
   );
 };
@@ -102,6 +110,18 @@ const styles = StyleSheet.create({
     marginTop: 20,
     width: 300,
     maxWidth: "80%",
+  },
+  list: {
+    flex: 1, // REQUIRED FOR SCROLL FUNCTIONALITY ON ANDROID!!
+    width: "80%",
+  },
+  listItem: {
+    flexDirection: "row",
+    borderColor: "black",
+    borderWidth: 1,
+    padding: 15,
+    marginVertical: 10,
+    justifyContent: "space-around",
   },
 });
 
