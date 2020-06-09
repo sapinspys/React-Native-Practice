@@ -29,9 +29,13 @@ const renderListItem = (listLength, itemData) => (
 );
 
 const GameScreen = (props) => {
-  const initialGuess = generateRandomBetween(1, 100, props.userChoice);
-  const [currentGuess, setCurrentGuess] = useState(initialGuess.toString());
-  const [pastGuesses, setPastGuesses] = useState([initialGuess.toString()]);
+  const initialGuess = generateRandomBetween(
+    1,
+    100,
+    props.userChoice
+  ).toString();
+  const [currentGuess, setCurrentGuess] = useState(initialGuess);
+  const [pastGuesses, setPastGuesses] = useState([initialGuess]);
 
   // useRef avoids re-rendering state, value stored in "current" property
   const currentLow = useRef(1);
@@ -62,7 +66,7 @@ const GameScreen = (props) => {
     if (direction === "LOWER") {
       currentHigh.current = currentGuess;
     } else {
-      currentLow.current = currentGuess + 1;
+      currentLow.current = parseInt(currentGuess) + 1;
     }
 
     const nextNumber = generateRandomBetween(
@@ -124,11 +128,11 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     flex: 1, // REQUIRED FOR SCROLL FUNCTIONALITY ON ANDROID!! (ie, TAKE ALL AVAILABLE SPACE)
-    width: "80%",
+    width: "60%",
   },
   list: {
     flexGrow: 1, // (ie, take all available space without leaving scrollview)
-    alignItems: "center",
+    // alignItems: "center",
     justifyContent: "flex-end",
   },
   listItem: {
@@ -138,7 +142,7 @@ const styles = StyleSheet.create({
     padding: 15,
     marginVertical: 10,
     justifyContent: "space-around",
-    width: "60%",
+    width: "100%",
   },
 });
 
