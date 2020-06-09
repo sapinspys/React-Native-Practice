@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { View, StyleSheet, Alert } from "react-native";
+import { View, StyleSheet, Alert, ScrollView, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons"; // https://icons.expo.fyi/
 
 import NumberContainer from "../components/NumberContainer";
@@ -36,7 +36,7 @@ const GameScreen = (props) => {
   // Will only re-run useEffect if dependencies are modified
   useEffect(() => {
     if (currentGuess === userChoice) {
-      onGameOver(rounds);
+      onGameOver(pastGuesses.length);
     }
   }, [currentGuess, userChoice, onGameOver]);
 
@@ -54,7 +54,7 @@ const GameScreen = (props) => {
     if (direction === "LOWER") {
       currentHigh.current = currentGuess;
     } else {
-      currentLow.current = currentGuess;
+      currentLow.current = currentGuess + 1;
     }
 
     const nextNumber = generateRandomBetween(
@@ -64,7 +64,7 @@ const GameScreen = (props) => {
     );
 
     setCurrentGuess(nextNumber);
-    setRounds((currPastGuesses) => [nextNumber, ...currPastGuesses]);
+    setPastGuesses((currPastGuesses) => [nextNumber, ...currPastGuesses]);
   };
 
   return (
@@ -79,6 +79,13 @@ const GameScreen = (props) => {
           <Ionicons name="md-add" size={24} color="white" />
         </MainButton>
       </Card>
+      <ScrollView>
+        {pastGuesses.map((guess) => (
+          <View key={guess}>
+            <Text>{guess}</Text>
+          </View>
+        ))}
+      </ScrollView>
     </View>
   );
 };
