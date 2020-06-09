@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { View, StyleSheet, Alert, ScrollView } from "react-native";
+import { View, StyleSheet, Alert, ScrollView, FlatList } from "react-native";
 import { Ionicons } from "@expo/vector-icons"; // https://icons.expo.fyi/
 
 import NumberContainer from "../components/NumberContainer";
@@ -21,17 +21,17 @@ const generateRandomBetween = (min, max, exclude) => {
   }
 };
 
-const renderListItem = (value, round) => (
-  <View style={styles.listItem} key={value}>
-    <BodyText>#{round}</BodyText>
-    <BodyText>{value}</BodyText>
+const renderListItem = (listLength, itemData) => (
+  <View style={styles.listItem}>
+    <BodyText>#{listLength - itemData.index}</BodyText>
+    <BodyText>{itemData.item}</BodyText>
   </View>
 );
 
 const GameScreen = (props) => {
   const initialGuess = generateRandomBetween(1, 100, props.userChoice);
-  const [currentGuess, setCurrentGuess] = useState(initialGuess);
-  const [pastGuesses, setPastGuesses] = useState([initialGuess]);
+  const [currentGuess, setCurrentGuess] = useState(initialGuess.toString());
+  const [pastGuesses, setPastGuesses] = useState([initialGuess.toString()]);
 
   // useRef avoids re-rendering state, value stored in "current" property
   const currentLow = useRef(1);
@@ -72,7 +72,10 @@ const GameScreen = (props) => {
     );
 
     setCurrentGuess(nextNumber);
-    setPastGuesses((currPastGuesses) => [nextNumber, ...currPastGuesses]);
+    setPastGuesses((currPastGuesses) => [
+      nextNumber.toString(),
+      ...currPastGuesses,
+    ]);
   };
 
   return (
@@ -89,11 +92,18 @@ const GameScreen = (props) => {
       </Card>
       <View style={styles.listContainer}>
         {/* contentContainerStyle required for ScrollView flexbox styling */}
-        <ScrollView contentContainerStyle={styles.list}> 
+        {/* <ScrollView contentContainerStyle={styles.list}> 
           {pastGuesses.map((guess, index) =>
             renderListItem(guess, pastGuesses.length - index)
           )}
-        </ScrollView>
+        </ScrollView> */}
+        {/* Reminder: FlatLists expects DB-like OBJECTS with KEYS */}
+        <FlatList
+          keyExtractor={(item) => item}
+          data={pastGuesses}
+          renderItem={renderListItem.bind(this, pastGuesses.length)}
+          contentContainerStyle={styles.list}
+        />
       </View>
     </View>
   );
